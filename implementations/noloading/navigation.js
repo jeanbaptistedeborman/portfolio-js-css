@@ -8,6 +8,7 @@ var Navigation = {
 	context : {},
 
 	init : function() {
+		"use strict"; 
 		
 		context = this;
 

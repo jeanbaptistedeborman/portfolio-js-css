@@ -1,9 +1,12 @@
 /**
  @author Jean-Baptiste de Borman  - jb@noloading.com
  **/
+/*jslint vars:true, white:true, nomen:true, plusplus:true */
+/*global Implementation,$, documentation_$:true,sourceDocumentation_$:true, _gaq, SVGFactory */
 
 var Footer = {
 	init : function() {
+		"use strict"; 
 		
 		Implementation.addPageUrlToVcard (); 
 
@@ -23,7 +26,7 @@ var Footer = {
 			}, 0);
 			_gaq.push(['_trackEvent', "tools", "Show code"]); 
 			
-		})
+		});
 
 		documentation_$.each(function(index, element) {
 			var element_$ = $(element);
@@ -36,11 +39,11 @@ var Footer = {
 			closeButton_$.on('click tap touch', function() {
 				element_$.height(0);
 				var timeOut = window.setTimeout(function() {
-					element_$.hide()
+					element_$.hide(); 
 				}, 500);
 
-			})
+			});
 		});
 
 	}
-}
+};

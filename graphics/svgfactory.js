@@ -4,6 +4,9 @@ Generates svg graphics. Use SVGFactory.Params to specify the parameters in the r
 
  */
 
+/*jslint vars:true, white:true, nomen:true, plusplus:true */
+/*global $, trace, ScreenTools, openItems_array, ArrayTools, project_$, OPEN_WIDTH*/
+
 var SVGFactory = {
 
 	/** 
@@ -18,6 +21,7 @@ var SVGFactory = {
 	 */
 
 	Params : function() {
+		"use strict"; 
 
 		this.strokeWidth = 3;
 		this.strokePadding = 8;
@@ -36,14 +40,15 @@ var SVGFactory = {
 	 * @param {object} params  an instance of the SVGFactory.Params object
 	 * @return {string} svg_str: An SVG-tag containing the SVG button.
 	 */
-	getCloseButton : function(params) { 
+	getCloseButton : function(params) {
+		"use strict";  
 	
 		var strokeWidth = Number(params.strokeWidth);
 		var width = Number(params.size[0]);
 		var height = Number(params.size[1]);
 
 		var center = [width / 2, height / 2];
-		var r = Number(width * .5) - params.strokeWidth;
+		var r = Number(width * 0.5) - params.strokeWidth;
 		var tl = [params.strokePadding, params.strokePadding];
 		var tr = [width - params.strokePadding, params.strokePadding];
 		var bl = [params.strokePadding, height - params.strokePadding];
@@ -63,10 +68,11 @@ var SVGFactory = {
 	 * @return {string} svg_str: An SVG-tag containing the SVG buttons.
 	 */
 	getArrowButton : function(params) {
+		"use strict";
 		var width = Number(params.size[0]);
 		var height = Number(params.size[1]);
 		var strokeWidth = params.strokeWidth;
-		var r = Number(width * .5) - params.strokeWidth;
+		var r = Number(width * 0.5) - params.strokeWidth;
 		var tl = [params.strokePadding, params.strokePadding];
 		var tr = [width - params.strokePadding, params.strokePadding];
 		var bl = [params.strokePadding, height - params.strokePadding];
@@ -78,27 +84,29 @@ var SVGFactory = {
 
 		var svg_str = "<svg class='svgArrow' xmlns='http://www.w3.org/2000/svg' version='1.1' width = '" + width + "' height = '" + height + "'>";
 
-		svg_str += this._flipV(flipV_bool, width)
+		svg_str += this._flipV(flipV_bool, width); 
 
 		svg_str += this._getShape(width, height, strokeWidth, borderRadius);
-		svg_str += "<line x1='" + center[0] + "' y1='" + tl[0] + "' x2='" + br[0] + "' y2='" + center[1] + "' stroke='black' stroke-width='" + strokeWidth + "'></line>"
-		svg_str += "<line x1='" + center[0] + "' y1='" + bl[1] + "' x2='" + br[0] + "' y2='" + center[1] + "' stroke='black' stroke-width='" + strokeWidth + "'></line>"
+		svg_str += "<line x1='" + center[0] + "' y1='" + tl[0] + "' x2='" + br[0] + "' y2='" + center[1] + "' stroke='black' stroke-width='" + strokeWidth + "'></line>";
+		svg_str += "<line x1='" + center[0] + "' y1='" + bl[1] + "' x2='" + br[0] + "' y2='" + center[1] + "' stroke='black' stroke-width='" + strokeWidth + "'></line>"; 
 
-		svg_str += "<line x1='" + tl[0] + "' y1='" + center[1] + "' x2='" + br[0] + "' y2='" + center[1] + "' stroke='black' stroke-width='" + strokeWidth + "'></line></svg>"
+		svg_str += "<line x1='" + tl[0] + "' y1='" + center[1] + "' x2='" + br[0] + "' y2='" + center[1] + "' stroke='black' stroke-width='" + strokeWidth + "'></line></svg>"; 
 		return $(svg_str);
 	},
 
 /// PRIVATE FUNCTIONS
 //@ignore
 	_getShape : function(width, height, strokeWidth, borderRadius) {
+		"use strict"; 
 
-		return "<rect class='mainShape' x='" + strokeWidth * .5 + "'y = '" + strokeWidth * .5 + "' ry='" + borderRadius + "' rx='" + borderRadius + "' width='" + Number(width - strokeWidth) + "' height='" + Number(height - strokeWidth) + "' stroke='black' stroke-width='" + strokeWidth + "'  fill='white'> </rect>";
+		return "<rect class='mainShape' x='" + strokeWidth * 0.5 + "'y = '" + strokeWidth * 0.5 + "' ry='" + borderRadius + "' rx='" + borderRadius + "' width='" + Number(width - strokeWidth) + "' height='" + Number(height - strokeWidth) + "' stroke='black' stroke-width='" + strokeWidth + "'  fill='white'> </rect>";
 
 	},
 	
 	//this string flips svg graphics; 
 	//@ignore
 	_flipV : function(flipV_bool, width) {
+		"use strict";
 
 		if (flipV_bool) {
 			var svg_str = "";

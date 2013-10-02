@@ -1,3 +1,8 @@
+
+/*jslint vars:true, white:true, nomen:true, plusplus:true */
+/*global $, trace, Timer_jb, ScreenTools,_gaq, UserAgent, Slideshow_jb, Footer, Navigation, isTouch, MobileFixes, ResponsiveTiles, SVGFactory*/
+
+
 var project_height = 0;
 var content_$;
 var closeButton_$;
@@ -8,8 +13,8 @@ var OPEN_HEIGHT = 550;
 
 var boxDefaultWidth_num;
 var boxDefaultHeight_num;
-var openItems_array = new Array();
-var slideshows_array = new Array (); 
+var openItems_array = [];
+var slideshows_array = []; 
 var project_$;
 var portraitOrientation_bool;
 var documentation_$;
@@ -20,19 +25,21 @@ var Implementation = {
 	context:this, 
 
 	arrange : function() {
+		"use strict"; 
 
 		responsiveTiles.arrange();
 
 	},
 	addPageUrlToVcard : function (){
+		"use strict"; 
 		
 		var vCardLink_$ = $('#vCardLink'); 
 
 		vCardLink_$.attr ('href', vCardLink_$.attr ('href')+window.location.href); 
- 		
 		
 		}, 
 	createParticipationList : function() {
+		"use strict"; 
 
 		$('.project').each(function(index, element) {
 			var xml_str = String($(element).find ('participation')[0].outerHTML);
@@ -43,13 +50,14 @@ var Implementation = {
 			xml_$.find('participation').children().each(function(index, element) {
 				string += "<li>" + $($('descriptionContenu').find(element.nodeName)).text();
 
-			})
+			}); 
 
-			$(element).find('.description').append("<ul class ='participation'>" + string + "</div>")
+			$(element).find('.description').append("<ul class ='participation'>" + string + "</div>"); 
 
-		})
+		}); 
 	},
 	closeItem : function(item_$) {
+		"use strict";
 
 		var this_$ = $(this);
 		item_$.removeAttr('style');
@@ -62,7 +70,7 @@ var Implementation = {
 	},
 
 	closeItems : function() {
-		//clearTimeout(gallery_timeout);
+		"use strict"; 
 		while (openItems_array.length > 0) {
 			this.closeItem(openItems_array.pop());
 			
@@ -76,6 +84,7 @@ var Implementation = {
 	},
 
 	clickBox : function() {
+		"use strict"; 
 		Implementation.closeItems();
 		var this_$ = $(this);
 		this_$.unbind();
@@ -94,17 +103,19 @@ var Implementation = {
 		
 		closeButton_$.show();
 		Implementation.arrange();
-	 	var selection_str = this_$.find('h2').text (); 
+	var selection_str = this_$.find('h2').text (); 
 		_gaq.push(['_trackEvent', "clickBox", selection_str]); 
-		var slideshow = lastSlideShow_obj = new Slideshow_jb(this_$, img_$, 50, 450);
+		var slideshow = new Slideshow_jb(this_$, img_$, 50, 450);
+			lastSlideShow_obj  = slideshow; 
 			slideshows_array.push (slideshow); 
 			this_$.append(closeButton_$);
 	
 	}
-}
+}; 
 
 $(document).ready(function() {
-	if (UserAgent.msie() > 8 || UserAgent.msie() == -1) {
+	"use strict"; 
+	if (UserAgent.msie() > 8 || UserAgent.msie() === -1) {
 
 		Footer.init();
 		Navigation.init();
@@ -124,7 +135,7 @@ $(document).ready(function() {
 		content_$ = $('.content');
 		project_$.bind('mouseup touch tap', Implementation.clickBox);
 		var params = new SVGFactory.Params();
-		params.size = [20,20]
+		params.size = [20,20]; 
 		params.flipV_bool = true;
 					params.strokePadding = 6;
 
@@ -148,9 +159,9 @@ $(document).ready(function() {
 
 		project_height = $('.projet').height();
 
-		onResize = function() {
-			var changeCond1 = portraitOrientation_bool != undefined;
-			var changeCond2 = portraitOrientation_bool != ScreenTools.isPortrait();
+		var onResize = function() {
+			var changeCond1 = portraitOrientation_bool !== undefined;
+			var changeCond2 = portraitOrientation_bool !== ScreenTools.isPortrait();
 			var orientationChange_bool = changeCond1 && changeCond2;
 
 			if (ScreenTools.isPortrait()) {
@@ -160,7 +171,7 @@ $(document).ready(function() {
 					var project_$ = $(element); 
 			
 					
-					})
+				}); 
 		
 			}
 			if (orientationChange_bool) {
@@ -175,7 +186,7 @@ $(document).ready(function() {
 
 			portraitOrientation_bool = ScreenTools.isPortrait();
 
-		}
+		}; 
 
 		$(window).resize(function(e) {
 			onResize();
