@@ -14,13 +14,14 @@
  */
 
 /*jslint vars:true, white:true, nomen:true, plusplus:true */
-/*global $, trace, Timer_jb */
+/*global $, trace, Timer_jb*/
 
 var Slideshow_jb = function(parent_$, imgList_$, delay_sec, img_height) {"use strict";
+	var context = this, currentImg_num, img_num = imgList_$.length, loaded_array = [], interval,n;
 
-	var context = this, currentImg_num, n, img_num = imgList_$.length, _show;
-
+	context.timer = new Timer_jb(null, delay_sec, null);
 	context.container_$ = $("<div>");
+
 	context.navigation_$ = $('<div>');
 	context.container_$.append(context.navigation_$);
 	context.container_$.append(imgList_$);
@@ -32,6 +33,7 @@ var Slideshow_jb = function(parent_$, imgList_$, delay_sec, img_height) {"use st
 		if (context.timer !== undefined) {
 			context.timer.destroy();
 		}
+		clearInterval(interval);
 		context.timer = null;
 		context.container_$.remove();
 		context.container_$ = null;
@@ -39,8 +41,7 @@ var Slideshow_jb = function(parent_$, imgList_$, delay_sec, img_height) {"use st
 
 	};
 	/// PRIVATE METHODS
-	_show = function(index) {
-
+	var _show = function(index) {
 		if (context !== null && context !== undefined) {
 
 			context.timer.reset();
@@ -52,6 +53,7 @@ var Slideshow_jb = function(parent_$, imgList_$, delay_sec, img_height) {"use st
 			var img_$ = $($(context.container_$.find ('img'))[index]);
 			var previous_img_$ = $($(context.container_$.find ('img'))[currentImg_num]);
 			var legend_$ = $('<div/>');
+
 			img_$.css('display', "block");
 
 			previous_img_$.css('opacity', 0);
@@ -63,7 +65,6 @@ var Slideshow_jb = function(parent_$, imgList_$, delay_sec, img_height) {"use st
 
 			context.container_$.find('.legend').remove();
 			img_$.height(context.height);
-
 			legend_$.css('top', context.height - 20);
 
 			context.container_$.prepend(legend_$);
@@ -75,7 +76,6 @@ var Slideshow_jb = function(parent_$, imgList_$, delay_sec, img_height) {"use st
 			legend_$.css('top', context.height + 10).css('opacity', 1);
 		}
 	};
-
 	var _addNav = function() {
 		var MARGIN = 30;
 
@@ -84,7 +84,7 @@ var Slideshow_jb = function(parent_$, imgList_$, delay_sec, img_height) {"use st
 
 		};
 
-		for ( n = 0; n < imgList_$.length; n++) {
+		for (n = 0; n < imgList_$.length; n++) {
 			var button_$ = $('<div>');
 			button_$.addClass('navigationButton');
 
@@ -96,16 +96,48 @@ var Slideshow_jb = function(parent_$, imgList_$, delay_sec, img_height) {"use st
 		context.navigation_$.width((n + 1) * MARGIN);
 	};
 	var _init = function() {
-		var interval = window.setInterval(function() {
+
+		parent_$.prepend(context.container_$);
+		imgList_$.hide();
+
+		interval = window.setInterval(function() {
 			var allImagesAreLoaded_bool = true;
-			parent_$.prepend(context.container_$);
+			var firstImageIsLoaded_bool = false;
+
 			imgList_$.each(function(index, element) {
 
-				if (!element.complete || element.naturalWidth === 0) {
+				var notLoaded_bool = !element.complete || element.naturalWidth === 0;
+				if (notLoaded_bool) {
+
 					allImagesAreLoaded_bool = false;
 				}
 
+				loaded_array[index] = Boolean(!notLoaded_bool);
+
 			});
+
+			/*displays once first image  loaded*/
+			if (loaded_array[0]) {
+				var initiated_bool = context.navigation_$.find('.navigationButton').length !== 0;
+				if (!initiated_bool) {
+
+					_addNav();
+					var hr_$ = $('<hr>');
+					hr_$.addClass('divider');
+					context.container_$.addClass('slideshow');
+					context.container_$.append(hr_$);
+					context.navigation_$.addClass('navigation');
+					context.navigation_$.css('top', context.height).css('left', 0);
+					context.width = parent_$.width();
+
+					context.container_$.append(this.navigation_$);
+					hr_$.css('top', context.height);
+
+					_show(0);
+
+				}
+
+			}
 
 			if (allImagesAreLoaded_bool) {
 				clearInterval(interval);
@@ -116,29 +148,13 @@ var Slideshow_jb = function(parent_$, imgList_$, delay_sec, img_height) {"use st
 
 					});
 
-					var hr_$ = $('<hr>');
-					hr_$.addClass('divider');
-					context.container_$.addClass('slideshow');
-					context.container_$.append(hr_$);
-					context.navigation_$.addClass('navigation');
-					context.navigation_$.css('top', context.height).css('left', 0);
-					context.width = parent_$.width();
-					imgList_$.hide();
-					context.container_$.append(this.navigation_$);
-					context.timer = new Timer_jb(null, delay_sec, null);
-
 					context.timer.onTimerFinish = function() {
 						_show(currentImg_num + 1);
 					};
-
-					hr_$.css('top', context.height);
-					_addNav();
-					_show(0);
-
 				}
 			}
-		}, 10);
+		}, 100); 
 
-	};
+	}; 
 	_init();
-};
+}; 

@@ -14,9 +14,10 @@
  */
 
 function SelectionMenu(items_$, selectionButton_$) {
+	"use strict"; 
 	var context = this;
-	this.selection_$
-	this.selected_index
+	this.selection_$; 
+	this.selected_index; 
 
 	items_$.on('click', function() {
 		var this_$ = $(this);

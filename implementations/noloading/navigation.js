@@ -1,69 +1,56 @@
 /*
-@author : Jean-Baptiste de Borman jb@noloading.com
+ @author : Jean-Baptiste de Borman jb@noloading.com
 
-@description: the main interactivity of the page
-@function init : sets up selectionMenu; 
-*/
+ @description: the main interactivity of the page
+ @function init : sets up selectionMenu;
+ */
+
+/*jslint vars:true, white:true, nomen:true, plusplus:true */
+/*global $, trace, SVGFactory, SelectionMenu,Implementation,project_$, ScreenTools,  _gaq , isTouch*/
+
 var Navigation = {
-	context : {},
 
-	init : function() {
-		"use strict"; 
-		
-		context = this;
+	init : function() {"use strict";
 
+		var context = this, selection_str, arrowParams = new SVGFactory.Params();
 
-
-			var arrowParams = new SVGFactory.Params();
-			
-			if (isTouch ()) {
+		if (isTouch()) {
 			arrowParams.size = [40, 40];
 			arrowParams.borderRadius = 20;
-			}
-			
-			
-			var rightArrow_svg = SVGFactory.getArrowButton(arrowParams);
-			arrowParams.flipV_bool = true;
-			var leftArrow_svg = SVGFactory.getArrowButton(arrowParams);
-			var rightArrow_$ = $(rightArrow_svg);
-			var leftArrow_$ = $(leftArrow_svg);
-			var pos_y = $('.header').height() - rightArrow_$.attr("height") / 2 + 2;
+		}
 
-			rightArrow_$.css('top', pos_y).css('right', 10);
-			leftArrow_$.css('top', pos_y).css('left', 10);
-			$('body').append(rightArrow_$);
-			$('body').append(leftArrow_$);
-			rightArrow_$.on("click tap touch", function() {
-				context._swipe(+1);
+		var rightArrow_svg = SVGFactory.getArrowButton(arrowParams);
+		arrowParams.flipV_bool = true;
+		var leftArrow_svg = SVGFactory.getArrowButton(arrowParams);
+		var rightArrow_$ = $(rightArrow_svg);
+		var leftArrow_$ = $(leftArrow_svg);
+		var pos_y = $('.header').height() - rightArrow_$.attr("height") / 2 + 2;
 
-			})
-			leftArrow_$.on("click tap touch", function() {
-				context._swipe(-1);
-
-			})
-
+		rightArrow_$.css('top', pos_y).css('right', 10);
+		leftArrow_$.css('top', pos_y).css('left', 10);
+		$('body').append(rightArrow_$);
+		$('body').append(leftArrow_$);
+		rightArrow_$.on("click tap touch", context._swipe, 1);
+		leftArrow_$.on("click tap touch", context._swipe, -1);
 
 		var params = new SVGFactory.Params();
 		params.strokeWidth = 1.5;
-		params.size = [18, 18];	
+		params.size = [18, 18];
 		params.strokePadding = 6;
-	 
-		
 
 		var smallCloseButton_$ = $(SVGFactory.getCloseButton(params));
 
 		var selectionMenu = new SelectionMenu($('.header a'), smallCloseButton_$);
 		selectionMenu.onSelect = function() {
+			var selection_str;
 			if (this.selection_$) {
 
 				Implementation.closeItems();
-				var selection_str = this.selection_$.attr('data-select');
-				_gaq.push(['_trackEvent', "mainMenu", selection_str]);  
+				selection_str = this.selection_$.attr('data-select');
+				_gaq.push(['_trackEvent', "mainMenu", selection_str]);
 			} else {
-				/* = wildcard */ 
-				var selection_str = "div";
-				
-				
+				/* = wildcard */
+				selection_str = "div";
 
 			}
 			project_$.each(function(index, element) {
@@ -79,7 +66,7 @@ var Navigation = {
 					element_$.css(animProperty_str, 100 * index);
 					$('#container').append(element_$);
 					element_$.css('visibility', 'hidden');
-					timeOut = window.setTimeout(function() {
+					var timeOut = window.setTimeout(function() {
 						element_$.css('visibility', 'visible');
 						element_$.css(animProperty_str, 0);
 					}, 0);
@@ -95,20 +82,19 @@ var Navigation = {
 					}, 100);
 
 				}
-				Implementation.arrange ();
-				
+				Implementation.arrange();
 
-			})
-		}
+			});
+		};
 	},
-	_swipe : function(sens_int) {
-		trace("sens_int : " + sens_int)
-		var scroll_dist = sens_int * $(window).innerWidth() - 200;
+	_swipe : function(direction_int) {"use strict";
+	trace ("SWIPE"); 
+		var scroll_dist = direction_int * $(window).innerWidth() - 200;
 		var scrollLeft = $('body').scrollLeft() + scroll_dist;
-        Implementation.closeItems (); 
+		Implementation.closeItems();
 		$('html,body').animate({
 			scrollLeft : scrollLeft
 		}, 500);
 
 	}
-}
+};
