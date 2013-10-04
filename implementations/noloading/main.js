@@ -112,9 +112,18 @@ var Implementation = {
 };
 
 $(document).ready(function() {"use strict";
-	if (UserAgent.msie() > 8 || UserAgent.msie() === -1) {
 
-		Footer.init();
+
+
+	if (UserAgent.msie() > 8 || UserAgent.msie() === -1) {
+		
+		if (!UserAgent.androidNativeBrowser () ) {
+			
+			//$('html').addClass ('responsive'); 
+			
+		}
+
+		//Footer.init();
 		Navigation.init();
 
 		project_$ = $('.project');
@@ -132,7 +141,7 @@ $(document).ready(function() {"use strict";
 		content_$ = $('.content');
 		project_$.bind('mouseup touch tap', Implementation.clickBox);
 		var params = new SVGFactory.Params();
-		params.size = [20, 20];
+		//params.size = [20, 20];
 		params.flipV_bool = true;
 		params.strokePadding = 6;
 

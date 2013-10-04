@@ -5,8 +5,16 @@ Various tools (could be better documented or organised).
 
 **/
 
-//Dev tool:Wrapper of console.log in order to avoidall risk of breaking IE. 
+/*jslint vars:true, white:true, nomen:true, plusplus:true */
+/*global console, Modernizr*/
+
+
+
+//Dev tool:Wrapper of console.log in order to avoidall risk of breaking IE.
+
+ 
 function trace(string) {
+	"use strict"; 
 
 	if ( typeof (console) !== "undefined" && console.log !== undefined) {
 		try {
@@ -28,8 +36,10 @@ var ArrayTools = {
 	**/
 	  
 	contains : function(array, obj, $object_bool) {
+		"use strict";
+		var n;   
 		var contains_bool = false;
-		for (var n in array) {
+		for (n = 0; n< array.length; n++) {
 			var el1 = array[n];
 			var el2 = obj;
 
@@ -46,7 +56,7 @@ var ArrayTools = {
 		return (contains_bool);
 
 	}
-}
+}; 
 
 
 
@@ -54,23 +64,42 @@ var ArrayTools = {
 //Various user agent analysis
 var UserAgent = {
 	android : function() {
+		"use strict"; 
 		return navigator.userAgent.match(/Android/i) ? true : false;
 	},
 	blackBerry : function() {
+		"use strict"; 
 		return navigator.userAgent.match(/BlackBerry/i) ? true : false;
 	},
 	iOS : function() {
+		"use strict"; 
 		return navigator.userAgent.match(/iPhone|iPad|iPod/i) ? true : false;
 	},
 	windows : function() {
+		"use strict"; 
 		return navigator.userAgent.match(/IEMobile/i) ? true : false;
 	},
 	mobileWebkit : function() {
-		return (isMobile.Android() || isMobile.iOS());
+		"use strict"; 
+		return (UserAgent.android() || UserAgent.iOS());
 
 	},
+	androidNativeBrowser : function () {
+		"use strict"; 
+		var result_bool = false; 
+		if (this.android) {
+			result_bool = navigator.userAgent.indexOf('Chrome') === -1; 
+			
+			
+		}
+		
+		
+		
+		
+	}, 
 
 	iPhone : function() {
+		"use strict"; 
 
 		if (this.iOS) {
 
@@ -80,16 +109,19 @@ var UserAgent = {
 	},
 
 	anyMobile : function() {
-		return (isMobile.android() || isMobile.blackBerry() || isMobile.iOS() || isMobile.windows())
+		"use strict"; 
+		return (UserAgent.android() || UserAgent.blackBerry() || UserAgent.iOS() || UserAgent.windows()); 
 	},
 
 	msie : function() {
+		"use strict"; 
 		return this._getInternetExplorerVersion();
 
 	},
 	_getInternetExplorerVersion : function()
 	{
-		var rv = -1// Return value assumes failure.
+		"use strict";
+		var rv = -1; // Return value assumes failure.
 		if (navigator.appName == 'Microsoft Internet Explorer') {
 			var ua = navigator.userAgent;
 			var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
@@ -103,21 +135,23 @@ var UserAgent = {
 
 //Test of Touch device
 var isTouch = function() {
+	"use strict"; 
 
 	return (Modernizr.touch);
 
-}
+}; 
 
 
 //test for screens
 var ScreenTools = {
 	
 	isPortrait : function() {
+		"use strict"; 
 
 		return window.innerWidth < window.innerHeight;
 
 	}
-}
+}; 
 
 //Array manipulation
 

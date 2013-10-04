@@ -45,7 +45,7 @@ var MobileFixes = {
 		
 		//this.zoomAndroid (); 
 
-		if (UserAgent.android()) { 
+		if (UserAgent.android() && false) { 
 			$('body').hide();
 			window.location.reload(false);
 		}
