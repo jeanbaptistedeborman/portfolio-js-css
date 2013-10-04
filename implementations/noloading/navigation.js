@@ -30,8 +30,8 @@ var Navigation = {
 		leftArrow_$.css('top', pos_y).css('left', 10);
 		$('body').append(rightArrow_$);
 		$('body').append(leftArrow_$);
-		rightArrow_$.on("click tap touch", context._swipe, 1);
-		leftArrow_$.on("click tap touch", context._swipe, -1);
+		rightArrow_$.on("click tap touch", {direction_int:1}, context._swipe);
+		leftArrow_$.on("click tap touch", {direction_int:-1},  context._swipe);
 
 		var params = new SVGFactory.Params();
 		params.strokeWidth = 1.5;
@@ -87,8 +87,9 @@ var Navigation = {
 			});
 		};
 	},
-	_swipe : function(direction_int) {"use strict";
-	trace ("SWIPE"); 
+	_swipe : function(event) {"use strict";
+	var direction_int = event.data.direction_int; 
+	trace ("SWIPE : " + direction_int); 
 		var scroll_dist = direction_int * $(window).innerWidth() - 200;
 		var scrollLeft = $('body').scrollLeft() + scroll_dist;
 		Implementation.closeItems();

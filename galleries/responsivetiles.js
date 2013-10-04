@@ -3,7 +3,7 @@
  @constructor
  @description : this class completes a responsive css and is meant to improve the user experience on mobile devices. When the screen is switched from portrait to landscape, the scroll changes form vertical to horizontal and the items are stacked horizontally ("float:left") instead of vertically;
 
-The code is not fully abstracted from this specific project and uses a lot of global variables. It is therefore not reusable in its current state.
+ The code is not fully abstracted from this specific project and uses a lot of global variables. It is therefore not reusable in its current state.
 
  @param  {object} scorll_$ : a JQUERY selection of the container(s) handling the scroll (does not necessarily match the direct parent of the displayed items).
  @param {object} container_$ : a JQUERY selection of the parent containing the items.
@@ -12,12 +12,11 @@ The code is not fully abstracted from this specific project and uses a lot of gl
 /*jslint vars:true, white:true, nomen:true, plusplus:true */
 /*global $, trace, ScreenTools, openItems_array, ArrayTools, project_$, OPEN_WIDTH*/
 
-ResponsiveTiles = function(scorll_$, container_$) {
-	"use strict"; 
+ResponsiveTiles = function(scorll_$, container_$) {"use strict";
 
 	var boxDefaultWidth_num;
 	var boxDefaultHeight_num;
-	
+
 	//SPECIFIC METHODS FOR THIS PROJECT
 	var _findDefaultHeight = function() {
 
@@ -37,7 +36,7 @@ ResponsiveTiles = function(scorll_$, container_$) {
 
 		}
 
-	}; 
+	};
 	var _findDefaultWidth = function() {
 
 		if (!boxDefaultWidth_num || boxDefaultWidth_num < 100) {
@@ -54,11 +53,10 @@ ResponsiveTiles = function(scorll_$, container_$) {
 			boxDefaultWidth_num = testWidth_num;
 
 		}
-	}; 
-	
+	};
 
 	this.arrange = function() {
-		var items_$ = container_$.children(), portrait_bool = ScreenTools.isPortrait(),selected_$, scrollPos; 
+		var items_$ = container_$.children(), portrait_bool = ScreenTools.isPortrait(), selected_$, scrollPos;
 
 		if (openItems_array.length > 0) {
 			selected_$ = openItems_array[openItems_array.length - 1];
@@ -97,7 +95,7 @@ ResponsiveTiles = function(scorll_$, container_$) {
 			var margin_num = 0;
 
 			if (scrollPos !== -1) {
-				var cssMargins = parseInt(project_$.css('margin-left'),10) * 2;
+				var cssMargins = parseInt(project_$.css('margin-left'), 10) * 2;
 				margin_num = (window.innerWidth - OPEN_WIDTH) / 2;
 				scorll_$.animate({
 					scrollLeft : scrollPos - margin_num
@@ -118,7 +116,6 @@ ResponsiveTiles = function(scorll_$, container_$) {
 			}, 200);
 
 		}
-	}; 
+	};
 
-	
-}; 
+};

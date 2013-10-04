@@ -12,13 +12,10 @@
 }
 
 .svgClose {
-	position:absolute; 
-	
+	position: absolute;
 	top: 5px;
 	right: 5px;
 	cursor: pointer;
-	
-	
 }
 
 svg:hover .mainShape {
@@ -31,8 +28,8 @@ svg:hover line {
 .slideShow {
 	width: 100%;
 	position: absolute;
-	Xmargin-left:auto;  
-	Xmargin-right:auto; 
+	Xmargin-left: auto;
+	Xmargin-right: auto;
 }
 
 img {
@@ -44,12 +41,11 @@ img {
 
 	display: inline;
 	height: auto;
-	
 }
 body {
 	font-family: "Armata", Arial, Helvetica, sans-serif;
 	font-size: 14px;
-	line-height:120%; 
+	line-height: 120%;
 	margin: 0px;
 	background-color: #eee;
 	color: #000;
@@ -71,8 +67,6 @@ li {
 	text-indent: 0px;
 }
 
-
-
 .header {
 	text-align: center;
 	font-size: larger;
@@ -80,23 +74,42 @@ li {
 	border-bottom-style: solid;
 }
 
-#subline { 
-	font-size: 14px; 
-	color:#000;
-	padding:0px 10px 0px 0px;  
-	letter-spacing:1px;
-	width:100%;    
-	
+#subline {
+	font-size: 14px;
+	color: #000;
+	padding: 0px 10px 0px 0px;
+	letter-spacing: 1px;
+	width: 100%;
 }
 
 #selectionMenu {
 	margin: 15px 0px 12px 0px;
-	width:100%; 
+	width: 100%;
 }
 
+.linkButton {
+	position:absolute;
+	right:10px; 
+	bottom:10px;
+	color : #666; 
+		
+}
+.linkButton {
+
+	Xopacity:.5; 
+	 
+	
+	
+}
+.linkButton:visited {
+	color :  #666;
+	opacity: 0.5;  
+	
+	
+}
 
 .roundButton {
-	position:relative;  
+	position: relative;
 	cursor: pointer;
 	padding: 4px 8px 4px 8px;
 	text-decoration: underline;
@@ -108,36 +121,35 @@ li {
 	transition-duration: .2s;
 	-webkit-transition-duration: .2s;
 	margin: 0px 10px 10px 10px;
+
 }
 
 .roundButton : link {
 
 	color: #000;
-	opacity:.5; 
+	opacity: .5;
 }
 
 .roundButton:hover {
 	text-decoration: underline;
+	
 	border-color: #fff;
 }
 
 .roundButton .svgClose {
 	-webkit-filter: drop-shadow( 0px 4px 4px #999 );
-            filter: drop-shadow( 0px 4px 4px #999 );
-	visibility:hidden;  
- position:absolute;
- right:-9px; 
- top:-9px;    	
-	
-	}
-	.roundButton:hover .svgClose {
- opacity:1;
-visibility:visible;   	
-	
-	}
-	
+	filter: drop-shadow( 0px 4px 4px #999 );
+	visibility: hidden;
+	position: absolute;
+	right: -9px;
+	top: -9px;
+}
+.roundButton:hover .svgClose {
+	opacity: 1;
+	visibility: visible;
+}
 
-#selectionMenu .on {
+.linkButton:hover, #selectionMenu .on {
 	background-color: #ddd;
 	border-color: #999;
 }
@@ -146,18 +158,15 @@ h1 {
 	position: relative;
 	font-weight: 400;
 	font-family: "Fjalla One", arial, helvetica, sans-serif;
-	margin:18px 0px 12px 0px; 
-
+	margin: 18px 0px 12px 0px;
 	font-size: 24px;
 	color: #000;
-	
 	text-align: center;
-
 }
 h2 {
 	font-weight: 400;
 	font-size: 24px;
-	line-height:110%;
+	line-height: 110%;
 	font-family: "Fjalla One", arial, helvetica, sans-serif;
 	margin-bottom: 5px;
 	text-transform: uppercase;
@@ -170,10 +179,7 @@ h2 {
 .cf:after {
 	clear: both;
 }
-/* For IE 6/7 (triggers hasLayout)  */
-.cf {
 
-}
 
 descriptionContenu {
 	display: none;
@@ -191,7 +197,6 @@ descriptionContenu {
 	color: #fff;
 	font-weight: 200;
 	background-color: #C00;
-
 	padding: 1px 2% 0px 2%;
 	Xborder-style: solid;
 }
@@ -203,10 +208,8 @@ descriptionContenu {
 	border-color: #ccc;
 	box-shadow: 0px 4px 4px 1px #dedede;
 	border-radius: 0px;
-
 	position: relative;
 	box-sizing: border-box;
-	
 	cursor: pointer;
 	transition-property: width, height, left, top;
 	transition-duration: .5s;
@@ -221,7 +224,7 @@ descriptionContenu {
 	width: 300px;
 	font-weight: 100;
 	font-size: 13px;
-	line-height:160%; 
+	line-height: 160%;
 }
 .project:hover {
 	box-shadow: none;
@@ -230,7 +233,6 @@ descriptionContenu {
 .project:hover h2 {
 	text-decoration: underline;
 }
-
 
 .XlargeFonts {
 	font-size: 18px;
@@ -295,8 +297,6 @@ footer {
 }
 
 .popupContainer {
-	
-	
 
 	position: fixed;
 	width: 400px;
@@ -311,32 +311,24 @@ footer {
 	transition-property: bottom;
 	transition-duration: .3s;
 	right: 10px;
-	z-index:3; 
+	z-index: 3;
 }
 .popupContainer  .svgClose {
-	right:20px; 
-	
-	
-	}
+	right: 20px;
+}
 
 .footerPopup {
-	box-sizing:border-box;
-	-moz-box-sizing:border-box;  
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	font-size: smaller;
-
 	padding: 30px 60px 30px 30px;
-
-	height:100%; 
-
+	height: 100%;
 	overflow: scroll;
-
 }
 
 .footerPopup a {
 	font-weight: 800;
 }
-
-
 
 /*  PORTRAIT  */
 body {
@@ -344,7 +336,7 @@ body {
 }
 
 .description {
-	width:400px;
+	width: 400px;
 	XXfloat: left;
 	margin: 30px 0px 0px 320px;
 }
@@ -352,33 +344,31 @@ body {
 	padding: 0px 0px 60px 0px;
 }
 .thumb {
-	position:absolute;
-	top:0px; 
-	left:0px;  
-	border-width:0px 1px 0px 0px; 
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	border-width: 0px 1px 0px 0px;
 	width: 300px;
 	height: 225px;
 	float: left;
-z-index:2; 
+	z-index: 2;
 }
 
 .project {
 	width: 90%;
 	height: 227px;
-	overflow:hidden; 
+	overflow: hidden;
 	margin: 50px auto 15px auto;
 }
 .project .subtitle {
-	XXdisplay:none;
-	
-	
-	box-sizing: border-box; 
+	XXdisplay: none;
+	box-sizing: border-box;
 	position: absolute;
 	left: 0px;
-	Xtext-wrap:none;
-	width:100%;
-	padding:0px 0px 0px 320px; 
-	z-index:1;  
+	Xtext-wrap: none;
+	width: 100%;
+	padding: 0px 0px 0px 320px;
+	z-index: 1;
 }
 
 /*}
@@ -393,7 +383,7 @@ z-index:2;
 		position: fixed;
 		top: 0px;
 		left: 0px;
-		right:0px; 
+		right: 0px;
 		width: 100%;
 		Xbackground-color: #CC0;
 	}
@@ -406,9 +396,9 @@ z-index:2;
 		width: 350px;
 		height: 262px;
 		Xoverflow: none;
-		position:static; 
+		position: static;
 		float: none;
-		border-width:0px 0px 1px 0px; 
+		border-width: 0px 0px 1px 0px;
 	}
 	.description {
 		width: 92%;
@@ -420,10 +410,10 @@ z-index:2;
 		bottom: 0px;
 		left: 0px;
 	}
-	
+
 	#container {
 		Xheight: 630px;
-		Xoverflow:hidden; 
+		Xoverflow: hidden;
 	}
 	.project {
 		top: 165px;
@@ -437,10 +427,9 @@ z-index:2;
 		position: static;
 		margin: 0px;
 		width: 100%;
-		box-sizing:border-box;
-		-moz-box-sizing:border-box;  
-		padding:0px 5px 0px 5px;
-		
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		padding: 0px 5px 0px 5px;
 	}
 
 }
