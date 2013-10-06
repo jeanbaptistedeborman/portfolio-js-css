@@ -16,7 +16,7 @@ var MobileFixes = {
 
 	zoomAndroid : function(appWidth, appHeight) {
 
-		if (UserAgent.android()) {
+		if (UserAgent.android() && false) {
 			if (ScreenTools.isPortrait()) {
 				var screenWidth = window.innerWidth;
 				var scale_num = screenWidth / appWidth;

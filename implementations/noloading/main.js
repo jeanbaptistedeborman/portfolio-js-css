@@ -37,7 +37,7 @@ var Implementation = {
 	allowChangeScrollDirection: function  () {"use strict"; 
 		
 		
-		return !UserAgent.androidNativeBrowser (); 
+		return !UserAgent.anyMobile (); 
 		
 	}, 
 	

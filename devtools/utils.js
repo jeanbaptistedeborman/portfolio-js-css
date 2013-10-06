@@ -85,13 +85,15 @@ var UserAgent = {
 
 	},
 	androidNativeBrowser : function () {
-		"use strict"; 
+		"use strict";
+		 
 		var result_bool = false; 
 		if (this.android) {
 			result_bool = navigator.userAgent.indexOf('Chrome') === -1; 
 			
 			
 		}
+		
 		return result_bool; 
 		
 		
