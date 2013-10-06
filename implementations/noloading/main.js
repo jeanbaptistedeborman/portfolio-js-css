@@ -34,6 +34,13 @@ var Implementation = {
 		vCardLink_$.attr('href', vCardLink_$.attr('href') + window.location.href);
 
 	},
+	allowChangeScrollDirection: function  () {"use strict"; 
+		
+		
+		return !UserAgent.androidNativeBrowser (); 
+		
+	}, 
+	
 	createParticipationList : function() {"use strict";
 
 		$('.project').each(function(index, element) {
@@ -77,15 +84,13 @@ var Implementation = {
 	},
 
 	clickBox : function(e) {"use strict";
-		trace(e.target.nodeName.toUpperCase());
-
 		if (e.target.nodeName.toUpperCase() !== "A") {
 			Implementation.closeItems();
 			var this_$ = $(this);
 			this_$.unbind();
 			openItems_array.push(this_$);
 
-			if (ScreenTools.isPortrait()) {
+			if (ScreenTools.isPortrait() || !Implementation.allowChangeScrollDirection ()) {
 				this_$.height(OPEN_HEIGHT);
 
 			} else {
@@ -117,9 +122,11 @@ $(document).ready(function() {"use strict";
 
 	if (UserAgent.msie() > 8 || UserAgent.msie() === -1) {
 		
-		if (!UserAgent.androidNativeBrowser () ) {
+		
+		
+		if (!Implementation.allowChangeScrollDirection ()) {
 			
-			//$('html').addClass ('responsive'); 
+			$('html').removeClass ('changeScrollDirection'); 
 			
 		}
 

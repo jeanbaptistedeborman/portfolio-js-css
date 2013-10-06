@@ -186,7 +186,7 @@ descriptionContenu {
 }
 .content {
 
-	background-color: #fee;
+	Xbackground-color: #fee;
 }
 
 .subtitle {
@@ -371,15 +371,61 @@ body {
 	z-index: 1;
 }
 
+/*Test responsive*/
+.responsiveV .project .description {
+	Xbackground-color:#F00; 
+	position:relative; 
+	width: 67%;
+	padding-left:2%; 
+	display:block; 
+	overflow:hidden;
+    
+}
+
+.responsiveV  #container {
+	padding: 0px 0px 60px 0px;
+}
+.responsiveV  .thumb {
+	Xposition: relative;
+	Xtop: 0px;
+	Xleft: 0px;
+	border-width: 0px 1px 0px 0px;
+	width: 30%; 	 
+	height: auto;
+	float: left;
+	Xdisplay:block; 
+	Xz-index: 2;
+	
+}
+
+.responsiveV  .project {
+	width: 90%;
+	Xheight: 227px;
+	overflow:visible; 
+	margin: 50px auto 15px auto;
+}
+.responsiveV  .project .subtitle {
+	XXdisplay: none;
+	box-sizing: border-box;
+	Xposition: absolute;
+	Xleft: 0px;
+	Xtext-wrap: none;
+	width: 100%;
+	padding: 0px 0px 0px 0px;
+	z-index: 1;
+}
+/*end test*/
+
+
 /*}
  end portrait*/
 
 @media screen and (orientation: landscape) {
 
-	html {
+	.changeScrollDirection  html {
 		width: 100%;
 	}
-	.header {
+	.changeScrollDirection .header {
 		position: fixed;
 		top: 0px;
 		left: 0px;
@@ -388,11 +434,11 @@ body {
 		Xbackground-color: #CC0;
 	}
 
-	.svgArrow {
+	.changeScrollDirection  .svgArrow {
 		display: block;
 	}
 
-	.thumb {
+	.changeScrollDirection  .thumb {
 		width: 350px;
 		height: 262px;
 		Xoverflow: none;
@@ -400,29 +446,29 @@ body {
 		float: none;
 		border-width: 0px 0px 1px 0px;
 	}
-	.description {
+	.changeScrollDirection  .description {
 		width: 92%;
 		margin: 0% 4% 4% 4%;
 	}
 
-	footer {
+	.changeScrollDirection  footer {
 		position: fixed;
 		bottom: 0px;
 		left: 0px;
 	}
 
-	#container {
+	.changeScrollDirection  #container {
 		Xheight: 630px;
 		Xoverflow: hidden;
 	}
-	.project {
+	.changeScrollDirection  .project {
 		top: 165px;
 		float: left;
 		width: 352px;
 		height: 600px;
 		margin: 0px 15px 0px 15px;
 	}
-	.project .subtitle {
+	.changeScrollDirection  .project .subtitle {
 		display: block;
 		position: static;
 		margin: 0px;

@@ -10,7 +10,7 @@
  */
 
 /*jslint vars:true, white:true, nomen:true, plusplus:true */
-/*global $, trace, ScreenTools, openItems_array, ArrayTools, project_$, OPEN_WIDTH*/
+/*global $, trace, ScreenTools, openItems_array, ArrayTools, project_$, Implementation, OPEN_WIDTH*/
 
 ResponsiveTiles = function(scorll_$, container_$) {"use strict";
 
@@ -63,7 +63,7 @@ ResponsiveTiles = function(scorll_$, container_$) {"use strict";
 
 		}
 
-		if (!portrait_bool) {
+		if (!portrait_bool && Implementation.allowChangeScrollDirection ()) {
 			_findDefaultWidth();
 
 			var bodyWidth_num = 0;
@@ -106,7 +106,7 @@ ResponsiveTiles = function(scorll_$, container_$) {"use strict";
 
 		scrollPos = -1;
 
-		if (ScreenTools.isPortrait() && selected_$ !== undefined) {
+		if ((ScreenTools.isPortrait() || !Implementation.allowChangeScrollDirection ()) && selected_$ !== undefined ) {
 			_findDefaultHeight();
 
 			scrollPos = (Number(selected_$.index() - 1) * boxDefaultHeight_num) + 300;

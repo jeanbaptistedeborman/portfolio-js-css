@@ -92,6 +92,7 @@ var UserAgent = {
 			
 			
 		}
+		return result_bool; 
 		
 		
 		
