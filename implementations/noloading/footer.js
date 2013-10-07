@@ -8,9 +8,11 @@ var Footer = {
 	init : function() {
 		"use strict"; 
 		
+		var sourceDocumentation_$; 
+		
 		Implementation.addPageUrlToVcard (); 
 
-		documentation_$ = $('.footerPopup');
+		documentation_$ = $('.popupContainer');
 		documentation_$.detach();
 
 		$('#sourceButton').on("click tap touch", function() {

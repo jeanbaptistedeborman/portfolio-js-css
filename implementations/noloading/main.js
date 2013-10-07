@@ -130,13 +130,11 @@ $(document).ready(function() {"use strict";
 			
 		}
 
-		//Footer.init();
+		Footer.init();
 		Navigation.init();
 
 		project_$ = $('.project');
 		responsiveTiles = new ResponsiveTiles($('body,html'), $('#container'));
-
-		MobileFixes.zoomAndroid(1200, 1200);
 
 		$('html, body').scrollLeft(0);
 
@@ -170,8 +168,21 @@ $(document).ready(function() {"use strict";
 
 		project_height = $('.projet').height();
 
+		
+		var default_str = "Voir l'application"; 
 		var docLink_$ = $(".linkButton");
-		docLink_$.text("Voir l'application");
+		docLink_$.each (function (index, element){
+			var element_$ = $(element); 
+				
+			if (element_$.text() === "") {
+			
+				
+				element_$.text(default_str);
+				
+			}
+		}); 
+		trace ("text : " + docLink_$.text()); 
+		
 		docLink_$.attr("target", "_blank");
 
 		var onResize = function() {
@@ -193,7 +204,6 @@ $(document).ready(function() {"use strict";
 				Implementation.closeItems();
 				Implementation.arrange();
 
-				MobileFixes.reset();
 			} else {
 				Implementation.arrange();
 			}

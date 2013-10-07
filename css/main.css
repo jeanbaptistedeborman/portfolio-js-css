@@ -59,7 +59,6 @@ body {
 }
 
 ul {
-	list-style-image: url("../layout_img/bullet.gif");
 	margin-left: 10px;
 	padding-left: 10px;
 }
@@ -308,8 +307,9 @@ footer {
 	height: 600px;
 	-webkit-transition-property: bottom;
 	-webkit-transition-duration: .3s;
-	transition-property: bottom;
-	transition-duration: .3s;
+	
+	transition-property: height;
+	transition-duration: .1s;
 	right: 10px;
 	z-index: 3;
 }
@@ -333,6 +333,7 @@ footer {
 /*  PORTRAIT  */
 body {
 	width: 100%;
+	overflow-y:hidden; 
 }
 
 .description {
