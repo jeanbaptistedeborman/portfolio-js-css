@@ -106,7 +106,7 @@ var Implementation = {
 			Implementation.arrange();
 			var selection_str = this_$.find('h2').text();
 			_gaq.push(['_trackEvent', "clickBox", selection_str]);
-			var slideshow = new Slideshow_jb(this_$, img_$, 50, 450);
+			var slideshow = new Slideshow_jb(this_$, img_$, 20,  450);
 			lastSlideShow_obj = slideshow;
 			slideshows_array.push(slideshow);
 			this_$.append(closeButton_$);

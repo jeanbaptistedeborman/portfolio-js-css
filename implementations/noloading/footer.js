@@ -22,9 +22,10 @@ var Footer = {
 			documentation_$.css("display", 'block');
 			documentation_$.css("height", 0);
 			$("body").append(documentation_$);
-
+			/* Time out 0 serves to trigger the css animation. */ 
 			var timeOut = window.setTimeout(function() {
-				documentation_$.css('height', 600); 
+				var height_num = window.innerHeight - 200;  
+				documentation_$.css('height', height_num ); 
 			}, 0);
 			_gaq.push(['_trackEvent', "tools", "Show code"]); 
 			
