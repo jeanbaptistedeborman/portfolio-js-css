@@ -34,13 +34,12 @@ var Implementation = {
 		vCardLink_$.attr('href', vCardLink_$.attr('href') + window.location.href);
 
 	},
-	allowChangeScrollDirection: function  () {"use strict"; 
-		
-		
-		return !UserAgent.anyMobile (); 
-		
-	}, 
-	
+	allowChangeScrollDirection : function() {"use strict";
+
+		return !UserAgent.anyMobile();
+
+	},
+
 	createParticipationList : function() {"use strict";
 
 		$('.project').each(function(index, element) {
@@ -90,14 +89,14 @@ var Implementation = {
 			this_$.unbind();
 			openItems_array.push(this_$);
 
-			if (ScreenTools.isPortrait() || !Implementation.allowChangeScrollDirection ()) {
+			if (ScreenTools.isPortrait() || !Implementation.allowChangeScrollDirection()) {
 				this_$.height(OPEN_HEIGHT);
 
 			} else {
 				this_$.width(OPEN_WIDTH);
 			}
 			this_$.children("div, img").hide();
-			
+
 			var noscript_$ = this_$.find('.content').find('noscript');
 			var img_str = $.parseHTML("<div>" + noscript_$.text() + "</div>");
 			var img_$ = $(img_str).find('img');
@@ -106,28 +105,62 @@ var Implementation = {
 			Implementation.arrange();
 			var selection_str = this_$.find('h2').text();
 			_gaq.push(['_trackEvent', "clickBox", selection_str]);
-			var slideshow = new Slideshow_jb(this_$, img_$, 20,  450);
+			var slideshow = new Slideshow_jb(this_$, img_$, 30, 450);
 			lastSlideShow_obj = slideshow;
 			slideshows_array.push(slideshow);
 			this_$.append(closeButton_$);
-			this_$.append (this_$.find (".linkButton")); 
+			this_$.append(this_$.find(".linkButton"));
 		}
+
+	},
+	setAnalytics : function() {"use strict";
+		$(document).delegate(".slideshow .navigationButton", "click", function() {
+
+			var this_$ = $(this);
+			var link_num = this_$.text();
+			var content_str = this_$.parents('.project').find('h2').text();
+
+			_gaq.push(['_trackEvent', "lightbox navigation", content_str, link_num]);
+
+		});
+
+		var docLink_$ = $(".linkButton");
+		docLink_$.on("click", function() {
+			var this_$ = $(this);
+			var content_str = this_$.parents('.project').find('h2').text();
+			_gaq.push(['_trackEvent', "link to doc", content_str]);
+
+		});
+
+
+		$(document).delegate ("#documentation a", "click", function() {
+			var this_$ = $(this);
+			this_$.css ("opacity", ".1"); 
+			var link_str = this_$.text();
+			_gaq.push(['_trackEvent', "openCode", link_str]);
+
+		});
+
+		var contactLinks_$ = $('.contact a');
+		contactLinks_$.on("click", function() {
+			var this_$ = $(this);
+			var link_str = this_$.text();
+			_gaq.push(['_trackEvent', "contact", link_str]);
+
+		});
 
 	}
 };
 
 $(document).ready(function() {"use strict";
-
-
-
+	//$("a").css("opacity", "0.1");
+	$("a").attr("target", "_blank");
 	if (UserAgent.msie() > 8 || UserAgent.msie() === -1) {
-		
-		
-		
-		if (!Implementation.allowChangeScrollDirection ()) {
-			
-			$('html').removeClass ('changeScrollDirection'); 
-			
+
+		if (!Implementation.allowChangeScrollDirection()) {
+
+			$('html').removeClass('changeScrollDirection');
+
 		}
 
 		Footer.init();
@@ -168,22 +201,17 @@ $(document).ready(function() {"use strict";
 
 		project_height = $('.projet').height();
 
-		
-		var default_str = "Voir l'application"; 
+		var DEFAULT_STR = "Voir l'application";
 		var docLink_$ = $(".linkButton");
-		docLink_$.each (function (index, element){
-			var element_$ = $(element); 
-				
+		docLink_$.each(function(index, element) {
+			var element_$ = $(element);
+
 			if (element_$.text() === "") {
-			
-				
-				element_$.text(default_str);
-				
+
+				element_$.text(DEFAULT_STR);
+
 			}
-		}); 
-		trace ("text : " + docLink_$.text()); 
-		
-		docLink_$.attr("target", "_blank");
+		});
 
 		var onResize = function() {
 			var changeCond1 = portraitOrientation_bool !== undefined;
@@ -226,5 +254,6 @@ $(document).ready(function() {"use strict";
 		$('#sourceButton').hide().remove();
 
 	}
+	Implementation.setAnalytics();
 
 })
