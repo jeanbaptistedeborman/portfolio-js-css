@@ -317,8 +317,8 @@ body {
 }
 .thumb {
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	top: 2px;
+	left: 1px;
 	border-width: 0px 1px 0px 0px;
 	width: 300px;
 	height: 225px;
@@ -416,7 +416,7 @@ body {
 		top: 160px;
 		float: left;
 		width: 352px;
-		height: 520px;
+		height: 560px;
 		margin: 0px 15px 0px 15px;
 	}
 	.changeScrollDirection  .project .subtitle {
