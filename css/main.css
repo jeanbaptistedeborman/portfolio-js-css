@@ -317,8 +317,8 @@ body {
 }
 .thumb {
 	position: absolute;
-	top: 2px;
-	left: 1px;
+	top: 0px;
+	left: 0px;
 	border-width: 0px 1px 0px 0px;
 	width: 300px;
 	height: 225px;
