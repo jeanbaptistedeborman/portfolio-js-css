@@ -5,19 +5,19 @@
  @function init : sets up selectionMenu;
  */
 
-/*jslint vars:true, white:true, nomen:true, plusplus:true */
-/*global $, trace, SVGFactory, SelectionMenu,Implementation,project_$, ScreenTools,  _gaq , isTouch*/
+/*jslint vars:true,  white:true, nomen:true, plusplus:true */
+/*global $, SVGFactory, SelectionMenu,ScrollManipulation, Implementation,project_$, ScreenTools,  _gaq , isTouch*/
 
 var Navigation = {
-
+	context:this,   
 	init : function() {"use strict";
-
-		var context = this, selection_str, arrowParams = new SVGFactory.Params();
+		var selection_str, arrowParams = new SVGFactory.Params();
 
 		if (isTouch()) {
 			arrowParams.size = [40, 40];
 			arrowParams.borderRadius = 20;
 		}
+		this.bodyScrollNav = new ScrollManipulation($('html,body'));
 
 		var rightArrow_svg = SVGFactory.getArrowButton(arrowParams);
 		arrowParams.flipV_bool = true;
@@ -32,10 +32,10 @@ var Navigation = {
 		$('body').append(leftArrow_$);
 		rightArrow_$.on("click tap touch", {
 			direction_int : 1
-		}, context._swipe);
+		}, this.swipe);
 		leftArrow_$.on("click tap touch", {
 			direction_int : -1
-		}, context._swipe);
+		}, this.swipe);
 
 		var params = new SVGFactory.Params();
 		params.strokeWidth = 1.5;
@@ -91,17 +91,14 @@ var Navigation = {
 			});
 		};
 	},
-	_swipe : function(event) {"use strict";
+	swipe : function(event) {"use strict";
 		var direction_int = event.data.direction_int;
-			_gaq.push(['_trackEvent', "swipe", "direction : " + String (direction_int)]);
-
-		
-		var scroll_dist = direction_int * $(window).innerWidth() - 200;
-		var scrollLeft = $('body').scrollLeft() + scroll_dist;
+		_gaq.push(['_trackEvent', "swipe", "direction : " + String(direction_int)]);
 		Implementation.closeItems();
-		$('html,body').animate({
-			scrollLeft : scrollLeft
-		}, 500);
+		 var scroll_dist = $(window).innerWidth() - 200;
+	
+		/*Why do I need the reference to Navigation ?  */
+		Navigation.bodyScrollNav.swipe(direction_int, scroll_dist);
 
 	}
 };
