@@ -114,6 +114,7 @@ var SVGFactory = {
 			svg_str += " <g transform='scale(-1 1)'>";
 			return svg_str;
 		}
+		return (""); 
 
 	}
 }
